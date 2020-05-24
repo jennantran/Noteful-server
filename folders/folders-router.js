@@ -1,13 +1,13 @@
 const path = require('path');
 const express = require('express');
-const xxs = require('xxs');
+const xss = require('xss');
 const foldersRouter = express.Router();
 const jsonParser = express.json();
 const FoldersService = require('./folders-service')
 
 const serializeFolder = folder => ({
     id: folder.id,
-    folder_name: xxs(folder.folder_name)
+    folder_name: xss(folder.folder_name)
 });
 
 foldersRouter
@@ -17,7 +17,7 @@ foldersRouter
             req.app.get('db')
         )
         .then(folders => {
-            res.json(folders.map(serializeFolders))
+            res.json(folders.map(serializeFolder))
         })
         .catch(next)
     })
@@ -26,12 +26,11 @@ foldersRouter
         const newFolder = { folder_name }
 
         for (const [key , value] of Object.entries(newFolder))
-            if(value == null){
+            if(value == null)
                 return res.status(400).json({
                     error: { message: `Missing '${key}' in request body` }
                 })
-            
-        }
+      
         FoldersService.insertFolder(
             req.app.get('db'),
                 newFolder
@@ -39,12 +38,13 @@ foldersRouter
             .then( folder => {
                 res
                     .status(201)
+                    .location(path.posix.join(req.originalUrl, `/${folder.id}`))
                     .json(serializeFolder(folder))
             })
             .catch(next)
         });
 
-    foldersRouter
+ foldersRouter
         .route('/:folder_id')
         .all((req,res,next) => {
             FoldersService.getById('db', req.params.folder_id)
@@ -72,8 +72,29 @@ foldersRouter
             })
             .catch(next)
         })
-        
-module.exports(artilesRouter)
+        .patch(jsonParser, (req,res, next) => {
+            const { folder_name } =req.body
+            const folderToUpdate = { folder_name }
+
+            const numberOfValues = Object.values(folderToUpdate).filter(Boolean).length
+            if(numberOfValues === 0)
+                return res.status(400).json({
+                    error: {
+                        message: 'Request body must content name'
+                    }
+                })
+            FoldersService.updateFolder(
+                req.app.get('db'),
+                req.params.folder_id,
+                folderToUpdate
+                )
+            .then(numRowsAffected => {
+                res.status(204).end()
+            })
+            .catch(next)
+        })
+
+module.exports = foldersRouter
    
 
 
