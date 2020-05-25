@@ -1,0 +1,39 @@
+{
+  "name": "noteful-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "knex": "^0.21.1",
+    "nodemon": "^2.0.4",
+    "pg": "^7.18.2",
+    "morgan": "^1.10.0",
+    "postgrator": "^4.0.0",
+    "supertest": "^4.0.2",
+    "postgrator-cli": "^3.2.0",
+    "xss": "^1.0.6",
+    "xxs": "^0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^7.2.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jennantran/Noteful-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jennantran/Noteful-server/issues"
+  },
+  "homepage": "https://github.com/jennantran/Noteful-server#readme"
+}
