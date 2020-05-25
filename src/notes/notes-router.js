@@ -7,7 +7,7 @@ const NotesService = require('./notes-service')
 
 const serializeNote = note => ({
     id: note.id,
-    note_name: xss(note.notes_name),
+    note_name: xss(note.note_name),
     modified: note.modified,
     folder_id: note.folder_id,
     content: xss(note.content),
@@ -25,8 +25,8 @@ notesRouter
         .catch(next)
     })
     .post(jsonParser, (req, res, next) => {
-        const { notes_name, folder_id, content} = req.body
-        const newNote = { note_names, folder_id, content }
+        const { note_name, folder_id, content} = req.body
+        const newNote = { note_name, folder_id, content }
 
         for (const [key , value] of Object.entries(newNote))
             if(value == null)
@@ -76,8 +76,8 @@ notesRouter
             .catch(next)
         })
         .patch(jsonParser, (req,res, next) => {
-            const { notes_name, folder_id, content } =req.body
-            const noteToUpdate = { notes_name, folder_id, content }
+            const { note_name, folder_id, content } =req.body
+            const noteToUpdate = { note_name, folder_id, content }
 
             const numberOfValues = Object.values(noteToUpdate).filter(Boolean).length
             if(numberOfValues === 0)
@@ -98,10 +98,6 @@ notesRouter
         })
 
 module.exports = notesRouter
-<<<<<<< HEAD
-   
-=======
    
 
 
->>>>>>> master
