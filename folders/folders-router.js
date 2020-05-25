@@ -63,11 +63,11 @@ foldersRouter
             res.json(serializeFolder(res.folder))
         })
         .delete((req,res,next) => {
-            FoldersService.deleteService(
+            FoldersService.deleteFolder(
                 req.app.get('db'),
                 req.params.folder_id
             )
-            .then(numRowsAffected => {
+            .then( () => {
                 res.status(204).end()
             })
             .catch(next)
