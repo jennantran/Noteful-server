@@ -4,39 +4,27 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-<<<<<<< HEAD
     "chai": "^4.2.0",
-=======
->>>>>>> c27aa5bf5056f0477e2a8c9df41314ef4f0eed7e
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "knex": "^0.21.1",
-<<<<<<< HEAD
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "pg": "^7.18.2",
-    "morgan": "^1.10.0",
-    "postgrator": "^4.0.0",
     "supertest": "^4.0.2",
-    "postgrator-cli": "^3.2.0",
     "xss": "^1.0.6",
     "xxs": "^0.0.1"
   },
   "devDependencies": {
-    "mocha": "^7.2.0"
+    "postgrator-cli": "^3.2.0"
   },
   "scripts": {
-    "test": "mocha",
-=======
-    "morgan": "^1.10.0",
-    "xss": "^1.0.6"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
->>>>>>> c27aa5bf5056f0477e2a8c9df41314ef4f0eed7e
-    "start": "node server.js"
+    "test": "mocha --require test/setup.js --watch",
+    "dev": "nodemon src/server.js",
+    "start": "node server.js",
+    "migrate": "postgrator --config postgrator-config.js"
   },
   "repository": {
     "type": "git",
