@@ -4,12 +4,16 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+<<<<<<< HEAD
     "chai": "^4.2.0",
+=======
+>>>>>>> c27aa5bf5056f0477e2a8c9df41314ef4f0eed7e
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "knex": "^0.21.1",
+<<<<<<< HEAD
     "nodemon": "^2.0.4",
     "pg": "^7.18.2",
     "morgan": "^1.10.0",
@@ -24,6 +28,14 @@
   },
   "scripts": {
     "test": "mocha",
+=======
+    "morgan": "^1.10.0",
+    "xss": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+>>>>>>> c27aa5bf5056f0477e2a8c9df41314ef4f0eed7e
     "start": "node server.js"
   },
   "repository": {
